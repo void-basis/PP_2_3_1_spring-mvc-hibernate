@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Component
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
@@ -46,7 +46,7 @@ public class UserDaoImp implements UserDao {
     @Override
     @Transactional
     public List<User> listUsers() {
-        return entityManager.createQuery("FROM Users", User.class).getResultList();
+        return entityManager.createQuery("select User from User", User.class).getResultList();
     }
 
     @Override

@@ -23,7 +23,6 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "web")
 public class JavaConfig {
 
     private final Environment env;
@@ -46,16 +45,14 @@ public class JavaConfig {
     public LocalContainerEntityManagerFactoryBean getSessionFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new  LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(getDataSource());
-        factoryBean.setPackagesToScan("web");     //обязательно ??
+        factoryBean.setPackagesToScan("web");
 
         Properties props=new Properties();
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-
-        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());     // не понял зачем это  !!!
+        //props.put("hibernate.dialect", env.getProperty("org.hibernate.dialect.MySQL5Dialect"));
+        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(props);
-//        factoryBean.setHibernateProperties(props);        // вместо него factoryBean.setJpaProperties(props);
-//        factoryBean.setAnnotatedClasses(User.class);      //
         return factoryBean;
     }
 
