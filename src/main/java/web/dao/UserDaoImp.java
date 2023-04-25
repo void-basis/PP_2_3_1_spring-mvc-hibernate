@@ -20,20 +20,20 @@ public class UserDaoImp implements UserDao {
     @Override
     @Transactional
     public void add(User user) {
-        //entityManager.getCurrentSession().save(user);
- //       EntityTransaction transaction = entityManager.getTransaction();
-   //     transaction.begin();
-// Сохраняем новую сущность в контексте персистенции
         entityManager.persist(user);
         entityManager.flush();
-// Коммитим транзакцию
-     //   transaction.commit();
-
     }
 
     @Override
     public User getUser(long Id) {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void updateUser() {
+
+
     }
 
     @Override
@@ -46,12 +46,8 @@ public class UserDaoImp implements UserDao {
     @Override
     @Transactional
     public List<User> listUsers() {
-        return entityManager.createQuery("select User from User", User.class).getResultList();
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
-    @Override
-    @Transactional
-    public void updateUser() {
 
-    }
 }

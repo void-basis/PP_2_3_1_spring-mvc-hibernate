@@ -3,13 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>users</title>
 </head>
 <body>
 <div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+    <br><br><br><br><br>
+    <p style="margin-left: 42%"><a th:href="@{/addUser}" th:text="add"></a></p>
+
+    <table th:border="1" align="center" cellpadding="5">
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>eMail</th>
+            <th>actions</th>
+
+        </tr>
+        <tr th:each="lst : ${usersList}">
+            <td th:utext="${lst.getFirstName()}">...</td>
+            <td th:utext="${lst.getLastName()}">...</td>
+            <td th:utext="${lst.getEmail()}">...</td>
+            <td><a th:href="@{/update.html}" th:text="update"/>   <a th:href="@{/user/{id}}" th:text="delete"/></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
