@@ -1,7 +1,6 @@
 package web.dao;
 
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
@@ -25,15 +24,17 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUser(long Id) {
-        return null;
+    @Transactional
+    public User getUser(long id) {
+        return entityManager.find(User.class, id);
     }
 
     @Override
     @Transactional
-    public void updateUser() {
-
-
+    public User updateUser(User user) {
+        entityManager.merge(user);
+        entityManager.flush();
+        return user;
     }
 
     @Override

@@ -8,7 +8,9 @@
 <body>
 <div>
     <br><br><br><br><br>
-    <p style="margin-left: 42%"><a th:href="@{/addUser}" th:text="add"></a></p>
+
+    <form th:action="@{/addUser}">
+    <input type="submit" th:value="add"/></form>
 
     <table th:border="1" align="center" cellpadding="5">
         <tr>
@@ -22,7 +24,11 @@
             <td th:utext="${lst.getFirstName()}">...</td>
             <td th:utext="${lst.getLastName()}">...</td>
             <td th:utext="${lst.getEmail()}">...</td>
-            <td><a th:href="@{/update.html}" th:text="update"/>   <a th:href="@{/user/{id}}" th:text="delete"/></td>
+            <td><form th:action="@{/userUpdate/{id}(id=${lst.getId()})}">
+                <input type="submit" th:value="update   "/></form>
+                <br>
+            <form th:action="@{/deleteUser/{id}(id=${lst.getId()})}">
+                <input type="submit" th:value="delete   "/></form></td>
         </tr>
     </table>
 </div>
