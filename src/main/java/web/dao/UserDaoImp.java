@@ -31,10 +31,10 @@ public class UserDaoImp implements UserDao {
 
     @Override
     @Transactional
-    public User updateUser(User user) {
+    public void updateUser(User user) {
         entityManager.merge(user);
         entityManager.flush();
-        return user;
+        //return user;
     }
 
     @Override

@@ -38,8 +38,8 @@ public class UserController {
         model.addAttribute("userUpdate", userService.getUser(id));
         return "userUpdate";
     }
-    @PostMapping("/update")
-    public String update(@PathVariable("id") long id, @RequestBody User user){
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") long id,@ModelAttribute("userUpdate") User user){
         userService.updateUser(user);
         return "redirect:/users";
     }
