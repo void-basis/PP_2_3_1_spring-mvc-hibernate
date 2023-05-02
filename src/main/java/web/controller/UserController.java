@@ -34,17 +34,17 @@ public class UserController {
     }
 
     @GetMapping(value = "/userUpdate/{id}")
-    public String userUpdate(@PathVariable("id") int id, ModelMap model) {
+    public String update(@PathVariable("id") long id, ModelMap model) {
         model.addAttribute("userUpdate", userService.getUser(id));
         return "userUpdate";
     }
     @PostMapping("/update")
-    public String update(@ModelAttribute("userUpdate") User user){
+    public String update(@PathVariable("id") long id, @RequestBody User user){
         userService.updateUser(user);
         return "redirect:/users";
     }
     @GetMapping(value = "/deleteUser/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUserById(id);
         return "redirect:/users";
     }

@@ -8,10 +8,9 @@
 <body>
 <div>
     <br><br><br><br><br>
-    <form th:method="POST" th:action="@{/users}" th:object="${userUpdate}">
-
+    <form th:method="Post" th:action="@{/users}" th:object="${userUpdate}">
         <fieldset>
-            <legend>enter new user</legend>
+            <legend>update user</legend>
             <label for="name">Enter name: </label>
             <input type="text" th:field="*{firstName}" id="name"/>
             <br>
