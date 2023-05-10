@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import web.service.UserServiceImpl;
 @Controller
 public class UserController {
 
+    @Autowired
     public final UserServiceImpl userService;
 
     public UserController(UserServiceImpl userService) {
@@ -38,8 +40,8 @@ public class UserController {
         model.addAttribute("userUpdate", userService.getUser(id));
         return "userUpdate";
     }
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") long id,@ModelAttribute("userUpdate") User user){
+    @PostMapping("/userUpdate")
+    public String update(@ModelAttribute("userUpdate") User user){
         userService.updateUser(user);
         return "redirect:/users";
     }

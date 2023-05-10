@@ -1,16 +1,18 @@
 package web.service;
 
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 import web.dao.UserDao;
 import web.dao.UserDaoImp;
 import web.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService {
 
-    UserDao dao = new UserDaoImp();
+    private final UserDao dao;// = new UserDaoImp();
 
     public UserServiceImpl(UserDao dao) {
         this.dao = dao;
